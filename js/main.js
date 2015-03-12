@@ -48,17 +48,21 @@ $(function() {
 	  	$(this).parents('.compose').addClass('expand')
 	})
 
+	$('main').on('click', '.tweets button', function() {
+	  	$(this).parents('.compose').toggleClass('expand')
+	})
+
 	$('main').on('submit', 'header form.compose', function(event) {
 		event.preventDefault();
 	  	var foo = $(this).parents('header').find('textarea')
 	  	var foobar = foo.val()
 	  	$('.tweets').append(renderThread(User, foobar))
 	  	foo.val('')
-	  	$(this).parents('.compose').removeClass('expand')
+	  	$(this).toggleClass('expand')
 	})
 
-	$('.tweets').on('click', '.thread', function() {
-	  	$(this).addClass('expand')
+	$('.tweets').on('click', '.tweet', function() {
+	  	$(this).parent('.thread').toggleClass('expand')
 	})
 
 	$('.tweets').on('submit', 'form.compose', function() {
